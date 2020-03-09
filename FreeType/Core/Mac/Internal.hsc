@@ -29,7 +29,6 @@ import           Foreign.Ptr
 
 #ifdef darwin_HOST_OS
 #include <CoreServices/CoreServices.h>
-#include <Kernel/Kernel.h>
 #include "ft2build.h"
 #include FT_FREETYPE_H
 #include FT_MAC_H
