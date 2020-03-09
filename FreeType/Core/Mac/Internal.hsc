@@ -27,8 +27,10 @@ import           Data.Word
 import           Foreign.C.Types
 import           Foreign.Ptr
 
+#ifdef darwin_HOST_OS
 #include "ft2build.h"
-#include FT_FREETYPE_H
+#include FT_MAC_H
+#endif
 
 #ifdef darwin_HOST_OS
 foreign import ccall "FT_New_Face_From_FOND"
