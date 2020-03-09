@@ -29,6 +29,7 @@ import           Foreign.Ptr
 
 #ifdef darwin_HOST_OS
 #include "ft2build.h"
+#include FT_FREETYPE_H
 #include FT_MAC_H
 #endif
 
