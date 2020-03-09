@@ -19,7 +19,9 @@ module FreeType.Core.Mac.Internal
 import           FreeType.Core.Base.Types
 import           FreeType.Core.Mac.Types
 import           FreeType.Core.Types.Types
+#ifndef darwin_HOST_OS
 import           FreeType.Error.Values
+#endif
 
 import           Data.Word
 import           Foreign.C.Types
