@@ -453,6 +453,7 @@ test-suite dynamic-function-check
                  FreeType.Format.Gasp
                  FreeType.Control.Driver
                  FreeType.Control.Parameter
+                 FreeType.Control.Parameter.Internal
                  FreeType.Control.Subpixel
                  FreeType.Control.Subpixel.Internal
                  FreeType.Cache
@@ -489,6 +490,7 @@ test-suite dynamic-function-check
                  FreeType.Miscellaneous.Incremental
                  FreeType.Miscellaneous.Incremental.Internal
                  FreeType.Miscellaneous.TrueType
+                 FreeType.Miscellaneous.TrueType.Internal
                  FreeType.Miscellaneous.TrueTypeGX
                  FreeType.Miscellaneous.TrueTypeGX.Internal
 
