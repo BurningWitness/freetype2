@@ -52,9 +52,9 @@ matrix:
 #    addons: {apt: {packages: [ghc-8.6.5], sources: [hvr-ghc]}}
 
   # Nightly builds are allowed to fail
-  - env: BUILD=stack ARGS="--resolver nightly"
-    compiler: ": #stack nightly"
-    addons: {apt: {packages: [libgmp-dev]}}
+#  - env: BUILD=stack ARGS="--resolver nightly"
+#    compiler: ": #stack nightly"
+#    addons: {apt: {packages: [libgmp-dev]}}
 
   # Build on OS X in addition to Linux
 #  - env: BUILD=stack ARGS="--resolver lts-11"
@@ -66,13 +66,13 @@ matrix:
 #  - env: BUILD=stack ARGS="--resolver lts-14"
 #    compiler: ": #stack 8.6.5 osx"
 #    os: osx
-  - env: BUILD=stack ARGS="--resolver nightly"
-    compiler: ": #stack nightly osx"
-    os: osx
-
 #  - env: BUILD=stack ARGS="--resolver nightly"
-#    compiler: ": #stack nightly windows"
-#    os: windows
+#    compiler: ": #stack nightly osx"
+#    os: osx
+
+   - env: BUILD=stack ARGS="--resolver nightly"
+     compiler: ": #stack nightly windows"
+     os: windows
 
   allow_failures:
 #  - env: BUILD=cabal GHCVER=head  CABALVER=head
@@ -90,7 +90,13 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:$PATH
 - mkdir -p ~/.local/bin
 - |
-  curl -sSL https://get.haskellstack.org/ | sh
+  if [ `uname` = "Linux" || `uname` = "Darwin" ]
+  then
+    curl -sSL https://get.haskellstack.org/ | sh
+  else
+    curl -sSLo stack-installer.exe https://get.haskellstack.org/stable/windows-x86_64-installer.exe
+    ./stack
+  fi
 
 install:
 - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
