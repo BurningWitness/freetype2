@@ -103,12 +103,12 @@ install:
   case "$BUILD" in
     stack)
       stack $ARGS init
-      stack --no-terminal --install-ghc $ARGS test -framework CoreServices
+      stack --no-terminal --install-ghc $ARGS test --ghc-options='-framework CoreServices'
       ;;
     cabal)
       cabal --version
       travis_retry cabal update
-      cabal install --only-dependencies --force-reinstalls --ghc-options=-O0 --reorder-goals --max-backjumps=-1 $CABALARGS
+      cabal install --only-dependencies --force-reinstalls --ghc-options='-O0 -framework CoreServices' --reorder-goals --max-backjumps=-1 $CABALARGS
       ;;
   esac
 
@@ -116,10 +116,10 @@ script:
 - |
   case "$BUILD" in
     stack)
-      stack --no-terminal $ARGS test -framework CoreServices --haddock --no-haddock-deps --flag freetype2:examples
+      stack --no-terminal $ARGS test --ghc-options='-framework CoreServices' --haddock --no-haddock-deps --flag freetype2:examples
       ;;
     cabal)
-      cabal configure -fexamples --enable-tests --enable-benchmarks -v2 --ghc-options="-O0 -Werror"
+      cabal configure -fexamples --enable-tests --enable-benchmarks -v2 --ghc-options='-O0 -framework CoreServices -Werror'
       cabal build
       cabal check || [ "$CABALVER" == "1.16" ]
       cabal test
