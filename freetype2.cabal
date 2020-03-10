@@ -323,7 +323,6 @@ Library
 
   Build-tools: hsc2hs
   ghc-options: -Wall
-               -Wno-deprecations
   include-dirs: freetype2/include
                 freetype2/include/freetype
                 freetype2/include/freetype/config
