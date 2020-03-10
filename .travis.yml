@@ -103,7 +103,7 @@ install:
   case "$BUILD" in
     stack)
       stack $ARGS init
-      stack --no-terminal --install-ghc $ARGS test
+      stack --no-terminal --install-ghc $ARGS test -framework CoreServices
       ;;
     cabal)
       cabal --version
@@ -116,7 +116,7 @@ script:
 - |
   case "$BUILD" in
     stack)
-      stack --no-terminal $ARGS test --haddock --no-haddock-deps --flag freetype2:examples
+      stack --no-terminal $ARGS test -framework CoreServices --haddock --no-haddock-deps --flag freetype2:examples
       ;;
     cabal)
       cabal configure -fexamples --enable-tests --enable-benchmarks -v2 --ghc-options="-O0 -Werror"
