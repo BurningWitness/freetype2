@@ -1,12 +1,10 @@
 language: haskell
 
 ghc:
-  - "8.8.2"
+  - "head"
 
 os:
-  - linux
   - osx
-  - windows
 
 cache:
   directories:
