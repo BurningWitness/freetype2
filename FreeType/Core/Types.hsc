@@ -25,9 +25,13 @@ module FreeType.Core.Types
     -- ** FT_UInt32
   , FT_UInt32
     -- ** FT_Int64
+#ifdef mingw32_HOST_OS
   , FT_Int64
+#endif
     -- ** FT_UInt64
+#ifdef mingw32_HOST_OS
   , FT_UInt64
+#endif
     -- ** FT_Short
   , FT_Short
     -- ** FT_UShort

@@ -35,10 +35,11 @@ type FT_Int32   = #type FT_Int32
 
 type FT_UInt32  = #type FT_UInt32
 
+#ifdef mingw32_HOST_OS
 type FT_Int64   = #type FT_Int64
 
 type FT_UInt64  = #type FT_UInt64
-
+#endif
 type FT_Short   = #type FT_Short
 
 type FT_UShort  = #type FT_UShort

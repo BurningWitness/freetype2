@@ -90,9 +90,7 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:$PATH
 - mkdir -p ~/.local/bin
 - |
-  echo $__COMPAT_LAYER
   export __COMPAT_LAYER=""
-  echo $__COMPAT_LAYER
   choco install haskell-stack
 #  curl -sSLo stack-installer.exe https://get.haskellstack.org/stable/windows-x86_64-installer.exe
 #./stack-installer.exe
