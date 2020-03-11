@@ -90,8 +90,9 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:$PATH
 - mkdir -p ~/.local/bin
 - |
-  curl -sSLo stack-installer.exe https://get.haskellstack.org/stable/windows-x86_64-installer.exe
-  ./stack-installer.exe
+  choco install haskell-stack
+#  curl -sSLo stack-installer.exe https://get.haskellstack.org/stable/windows-x86_64-installer.exe
+#./stack-installer.exe
 
 install:
 - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
