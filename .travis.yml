@@ -100,6 +100,7 @@ install:
 - |
   case "$BUILD" in
     stack)
+      export __COMPAT_LAYER=""
       stack $ARGS init
       stack --no-terminal --install-ghc $ARGS test --ghc-options='-framework CoreServices'
       ;;
