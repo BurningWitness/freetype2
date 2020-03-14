@@ -90,12 +90,14 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:$PATH
 - mkdir -p ~/.local/bin
 - |
-  UNAME=$(uname)
-  if [ $UNAME == "Linux" || $UNAME == "Darwin" ]
-  then
-    curl -sSL https://get.haskellstack.org/ | sh
-  else
-    choco install haskell-stack
+  case $TRAVIS_OS_NAME in
+    windows)
+      choco install haskell-stack
+      ;;
+    *)
+      curl -sSL https://get.haskellstack.org/ | sh
+      ;;
+  esac
 #  curl -sSLo stack-installer.exe https://get.haskellstack.org/stable/windows-x86_64-installer.exe
 #./stack-installer.exe
 
