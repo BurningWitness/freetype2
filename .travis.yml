@@ -66,13 +66,16 @@ matrix:
 #  - env: BUILD=stack ARGS="--resolver lts-14"
 #    compiler: ": #stack 8.6.5 osx"
 #    os: osx
-#  - env: BUILD=stack ARGS="--resolver nightly"
-#    compiler: ": #stack nightly osx"
-#    os: osx
-
   - env: BUILD=stack ARGS="--resolver nightly"
-    compiler: ": #stack nightly windows"
-    os: windows
+    compiler: ": #stack nightly osx"
+    os: osx
+
+# Stack 2.1.3 (compiled with GHC 8.2.2) throws an
+# 'Access violation in generated code when writing 0x0' error
+# when compiling Template Haskell code under 32-bit Windows.
+#  - env: BUILD=stack ARGS="--resolver nightly"
+#    compiler: ": #stack nightly windows"
+#    os: windows
 
   allow_failures:
 #  - env: BUILD=cabal GHCVER=head  CABALVER=head
@@ -108,7 +111,13 @@ install:
   case "$BUILD" in
     stack)
       stack $ARGS init
-      stack --no-terminal --install-ghc $ARGS test --ghc-options='-framework CoreServices'
+      case $TRAVIS_OS_NAME in
+        osx)
+          stack --no-terminal --install-ghc $ARGS test --ghc-options='-framework CoreServices -dynamic -fPIC /usr/X11/lib/libfreetype.6.dylib'
+          ;;
+        *)
+          stack --no-terminal --install-ghc $ARGS test
+          ;;
       ;;
     cabal)
       cabal --version
