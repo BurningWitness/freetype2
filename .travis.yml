@@ -1,6 +1,3 @@
-# Choose a lightweight base image; we provide our own build tools.
-language: c
-
 # Caching so the next build will be fast too.
 cache:
   directories:
@@ -21,7 +18,7 @@ cache:
 matrix:
   include:
   # We grab the appropriate GHC and cabal-install versions from hvr's PPA. See:
-  # https://github.com/hvr/multi-ghc-travis
+  # https://github.com/haskell-CI/haskell-ci
 
 #  - env: BUILD=cabal-v1 GHCVER=8.2.2 CABALVER=2.0
 #    compiler: ": #GHC 8.2.2"
@@ -36,8 +33,8 @@ matrix:
   # Build with the newest GHC and cabal-install. This is an accepted failure,
   # see below.
   - env: BUILD=cabal-v2 GHCVER=head  CABALVER=head
-    compiler: ": #GHC HEAD"
-    addons: {apt: {packages: [cabal-install-head, ghc-head], sources: [hvr-ghc]}}
+    language: haskell
+    ghc: "head"
 
   # The Stack builds. We can pass in arbitrary Stack arguments via the ARGS
   # variable, such as using --stack-yaml to point to a different file.
