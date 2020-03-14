@@ -118,6 +118,7 @@ install:
         *)
           stack --no-terminal --install-ghc $ARGS test
           ;;
+      esac
       ;;
     cabal)
       cabal --version
