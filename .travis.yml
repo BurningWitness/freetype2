@@ -70,9 +70,9 @@ matrix:
 #    compiler: ": #stack nightly osx"
 #    os: osx
 
-   - env: BUILD=stack ARGS="--resolver nightly"
-     compiler: ": #stack nightly windows"
-     os: windows
+  - env: BUILD=stack ARGS="--resolver nightly"
+    compiler: ": #stack nightly windows"
+    os: windows
 
   allow_failures:
 #  - env: BUILD=cabal GHCVER=head  CABALVER=head
@@ -90,10 +90,12 @@ before_install:
 - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.local/bin:$PATH
 - mkdir -p ~/.local/bin
 - |
-  echo $__COMPAT_LAYER
-  export __COMPAT_LAYER=""
-  echo $__COMPAT_LAYER
-  choco install haskell-stack
+  UNAME=$(uname)
+  if [ $UNAME == "Linux" || $UNAME == "Darwin" ]
+  then
+    curl -sSL https://get.haskellstack.org/ | sh
+  else
+    choco install haskell-stack
 #  curl -sSLo stack-installer.exe https://get.haskellstack.org/stable/windows-x86_64-installer.exe
 #./stack-installer.exe
 
