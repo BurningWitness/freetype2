@@ -4,7 +4,7 @@ module FreeType.Internal
   , module FreeType.Core.Base.Internal
   , module FreeType.Core.Color.Internal
   , module FreeType.Core.Glyph.Internal
-  , module FreeType.Core.Mac.Internal
+--  , module FreeType.Core.Mac.Internal
   , module FreeType.Core.Size.Internal
     -- * Format-specific API
   , module FreeType.Format.Multiple.Internal
