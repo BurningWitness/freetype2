@@ -1,3 +1,6 @@
+{-# OPTIONS_GHC -fno-warn-dodgy-exports #-}
+{-# OPTIONS_GHC -fno-warn-unused-imports #-}
+
 module FreeType
   ( -- * Core API
     module FreeType.Core.Version
@@ -7,7 +10,7 @@ module FreeType
   , module FreeType.Core.Color
   , module FreeType.Core.Layer
   , module FreeType.Core.Glyph
---  , module FreeType.Core.Mac
+  , module FreeType.Core.Mac
   , module FreeType.Core.Size
     -- * Format-specific API
   , module FreeType.Format.Multiple
